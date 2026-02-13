@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Universe 🌌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+margin:0;
+padding:0;
+height:100%;
+overflow:hidden;
+font-family:'Cinzel', serif;
+background:black;
+color:white;
+}
+
+/* Slides */
+.slide{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:40px;
+box-sizing:border-box;
+opacity:0;
+transition:opacity 1.5s ease;
+}
+
+.slide.active{
+opacity:1;
+z-index:1;
+}
+
+/* First Slide Zoom */
+.spaceZoom{
+  animation:zoomIntoSpace 6s ease forwards;
+  transform:scale(1.4); /* Lock final zoom level */
+}
+
+@keyframes zoomIntoSpace{
+  from { transform:scale(1); }
+  to { transform:scale(1.4); }
+}
+
+/* Heading Fade */
+h1{
+font-family:'Orbitron', sans-serif;
+font-size:42px;
+letter-spacing:4px;
+margin-bottom:20px;
+text-shadow:0 0 20px rgba(255,255,255,0.9);
+opacity:0;
+transform:translateY(25px);
+}
+
+.fadeIn h1{
+  animation: fadeHeading 2s ease forwards;
+}
+
+/* First heading */
+.fadeIn h1:nth-of-type(1){
+  animation-delay:0.6s;
+}
+
+/* Second heading */
+.fadeIn h1:nth-of-type(2){
+  animation-delay:2.6s;
+}
+
+@keyframes fadeHeading{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Paragraph */
+p{
+max-width:900px;
+font-size:20px;
+line-height:1.8;
+}
+
+/* Line Animation */
+.line{
+display:block;
+opacity:0;
+transform:translateY(15px);
+}
+
+.fadeIn .line{
+animation:fadeLine 1.8s ease forwards;
+}
+
+.fadeIn .line:nth-child(1){animation-delay:1.5s;}
+.fadeIn .line:nth-child(2){animation-delay:2.7s;}
+.fadeIn .line:nth-child(3){animation-delay:3.9s;}
+.fadeIn .line:nth-child(4){animation-delay:5.1s;}
+.fadeIn .line:nth-child(5){animation-delay:6.3s;}
+.fadeIn .line:nth-child(6){animation-delay:7.5s;}
+.fadeIn .line:nth-child(7){animation-delay:8.7s;}
+.fadeIn .line:nth-child(8){animation-delay:9.9s;}
+.fadeIn .line:nth-child(9){animation-delay:11.1s;}
+.fadeIn .line:nth-child(10){animation-delay:12.3s;}
+
+@keyframes fadeLine{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Button */
+button{
+margin-top:40px;
+padding:15px 45px;
+border-radius:50px;
+border:none;
+font-family:'Orbitron', sans-serif;
+font-size:15px;
+background:linear-gradient(135deg,#1a1a60,#3d5bff);
+color:white;
+cursor:pointer;
+box-shadow:0 0 25px #4a6cff;
+position:relative;
+overflow:hidden;
+opacity:0;
+transform:translateY(15px);
+}
+
+button.showBtn{
+animation:fadeButton 1.8s ease forwards;
+}
+
+@keyframes fadeButton{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 60px #7aa2ff, 0 0 120px #4a6cff;
+}
+
+button::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:60%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.8),transparent);
+transform:skewX(-20deg);
+}
+
+button:hover::before{
+animation:slowShine 2.5s ease forwards;
+}
+
+@keyframes slowShine{
+0%{ left:-100%; }
+100%{ left:150%; }
+}
+
+.fadeOut{
+animation:fadeAll 1s forwards;
+}
+
+@keyframes fadeAll{
+to{opacity:0;}
+}
+
+.telescopeText{
+color:black;
+text-shadow:none;
+}
+
+/* Make sure letters stay inline */
+.loveText{
+  display:inline-block;
+}
+
+.loveText span{
+  opacity:0;
+  display:inline-block;
+}
+
+/* Animate letters one by one */
+.fadeIn .loveText span{
+  animation:letterFade 0.5s ease forwards;
+}
+
+/* Stagger delays */
+.fadeIn .loveText span:nth-child(1){animation-delay:3s;}
+.fadeIn .loveText span:nth-child(2){animation-delay:3.8s;}
+.fadeIn .loveText span:nth-child(3){animation-delay:4.6s;}
+.fadeIn .loveText span:nth-child(4){animation-delay:5.4s;}
+.fadeIn .loveText span:nth-child(5){animation-delay:6.2s;}
+.fadeIn .loveText span:nth-child(6){animation-delay:7s;}
+.fadeIn .loveText span:nth-child(7){animation-delay:7.8s;}
+.fadeIn .loveText span:nth-child(8){animation-delay:8.6s;}
+.fadeIn .loveText span:nth-child(9){animation-delay:9.4s;}
+.fadeIn .loveText span:nth-child(10){animation-delay:10.2s;}
+
+@keyframes letterFade{
+  to{
+    opacity:1;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="interstellar.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Slide 1 -->
+<div class="slide active fadeIn spaceZoom" style="background-image:url('stars.jpg')">
+<h1>Preparing for Launch</h1>
+<p>
+<span class="line">Leaving earth...</span>
+<span class="line">Entering our universe.</span>
+</p>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" style="background-image:url('stars.jpg')">
+<h1>Tonight</h1>
+<p>
+<span class="line">I don’t just give you a gift.</span>
+<span class="line">I give you the universe.</span>
+</p>
+<button onclick="next()">Begin the Voyage</button>
+</div>
+
+<!-- Moon -->
+<div class="slide" style="background-image:url('moon.jpg')">
+<h1>THE MOON</h1>
+<p>
+<span class="line">Constant, even when we don’t always see it.</span>
+<span class="line">Just like us.</span>
+<span class="line">Even in distance, we were always there.</span>
+</p>
+<button onclick="next()">Drift Further</button>
+</div>
+
+<!-- Jupiter -->
+<div class="slide" style="background-image:url('jupiter.jpg')">
+<h1>JUPITER</h1>
+<p>
+<span class="line">The biggest planet.</span>
+<span class="line">Because my feelings are not small.</span>
+<span class="line">They are gravitational.</span>
+<span class="line">They pull me back to you every time.</span>
+</p>
+<button onclick="next()">Go Deeper</button>
+</div>
+
+<!-- Saturn -->
+<div class="slide" style="background-image:url('saturn.jpg')">
+<h1>SATURN</h1>
+<p>
+<span class="line">Steady, surrounded by rings that stay in orbit.</span>
+<span class="line">Just like I want us steady, beautiful, balanced,</span>
+<span class="line">unbreakable and always circling back to each other.</span>
+</p>
+<button onclick="next()">Burn Brighter</button>
+</div>
+
+<!-- Aries -->
+<div class="slide" style="background-image:url('aries.png')">
+<h1>ARIES CONSTELLATION</h1>
+<p>
+<span class="line">Fire sign energy. Bold. Strong.</span>
+<span class="line">That’s how you walked into my life.</span>
+<span class="line">Two flames that didn’t burn each other out,</span>
+<span class="line">but learned how to shine side by side.</span>
+</p>
+<button onclick="next()">Count the Stars</button>
+</div>
+
+<!-- Orion -->
+<div class="slide" style="background-image:url('orion.jpg')">
+<h1>ORION NEBULA</h1>
+<p>
+<span class="line">A place where stars are born.</span>
+<span class="line">Like the night our love really started.</span>
+</p>
+<button onclick="next()">See the Seven</button>
+</div>
+
+<!-- Pleiades -->
+<div class="slide" style="background-image:url('pleiades.jpg')">
+<h1>PLEIADES</h1>
+<p>
+<span class="line">Seven lights in the sky.</span>
+<span class="line">Seven reasons I choose you again and again.</span>
+<span class="line">Your smile... the first thing that caught my eye.</span>
+<span class="line">The glow in your face... the way you light up a room without trying.</span>
+<span class="line">Your warmth... the way I feel safe around you.</span>
+<span class="line">Your hunger to learn... your curiosity and dedication to grow.</span>
+<span class="line">The way you show up for me... even when things aren’t perfect.</span>
+<span class="line">Your quiet strength... the way you handle life without announcing it.</span>
+<span class="line">Your heart... soft, stubborn, real… and mine.</span>
+</p>
+<button onclick="next()">Beyond the Stars</button>
+</div>
+
+<!-- Andromeda -->
+<div class="slide" style="background-image:url('andromeda.jpg')">
+<h1>ANDROMEDA GALAXY</h1>
+<p>
+<span class="line">A whole galaxy.</span>
+<span class="line">Because loving you feels infinite.</span>
+<span class="line">Bigger than one lifetime.</span>
+<span class="line">Bigger than distance.</span>
+<span class="line">Bigger than fear.</span>
+</p>
+<button onclick="next()">Continue</button>
+</div>
+
+<!-- Slide 10 -->
+<div class="slide" style="background:black">
+<p>
+<span class="line">Tonight, I don’t want us to just look at pictures.</span>
+<span class="line">I want us to see them for real.</span>
+</p>
+<button onclick="next()">Show Me</button>
+</div>
+
+<!-- Ready -->
+<div class="slide" style="background:black">
+<h1>Ready Lokesh?</h1>
+<button onclick="next()">Launch</button>
+</div>
+
+<!-- Telescope -->
+<div class="slide telescopeText" style="background-image:url('telescope.png')">
+<h1>This is yours.</h1>
+<p>
+<span class="line">So we can chase moons, galaxies and dreams together.</span>
+<span class="line">Even Sheldon would approve of this gift :)</span>
+</p>
+<button onclick="next()">One Last Thing</button>
+</div>
+
+<!-- Final -->
+<div class="slide" style="background-image:url('milkyway.jpg')">
+<h1>My favorite universe will always be the one where I choose you.</h1>
+<h1 class="loveText">
+  <span>I</span><span>&nbsp;</span><span>L</span><span>O</span><span>V</span><span>E</span><span>&nbsp;</span><span>Y</span><span>O</span><span>U</span>
+</h1>
+</div>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let index=0;
+let music=document.getElementById("bgMusic");
+let musicStarted=false;
+
+document.addEventListener("click",function(){
+if(!musicStarted){
+music.play().catch(()=>{});
+musicStarted=true;
+}
+
+/* Make it fullscreen */
+if (!document.fullscreenElement) {
+  document.documentElement.requestFullscreen();
+}
+});
+
+setTimeout(()=>{goNext();},6000);
+
+function next(){goNext();}
+
+function goNext(){
+let current=slides[index];
+current.classList.add("fadeOut");
+
+setTimeout(()=>{
+current.classList.remove("active","fadeOut","fadeIn");
+let oldBtn=current.querySelector("button");
+if(oldBtn) oldBtn.classList.remove("showBtn");
+
+index++;
+
+if(index<slides.length){
+slides[index].classList.add("active","fadeIn");
+handleButton(slides[index]);
+}
+},1000);
+}
+
+function handleButton(slide){
+let btn=slide.querySelector("button");
+if(!btn) return;
+
+let lines=slide.querySelectorAll(".line");
+let heading=slide.querySelector("h1");
+
+if(lines.length>0){
+let firstDelay=1500;
+let stagger=1200;
+let duration=1800;
+let totalTime=firstDelay+((lines.length-1)*stagger)+duration;
+setTimeout(()=>{btn.classList.add("showBtn");},totalTime);
+}
+else if(heading){
+let headingDelay=600;
+let headingDuration=2000;
+let totalTime=headingDelay+headingDuration;
+setTimeout(()=>{btn.classList.add("showBtn");},totalTime);
+}
+else{
+btn.classList.add("showBtn");
+}
+}
+
+handleButton(slides[0]);
+</script>
+
+</body>
+</html>
